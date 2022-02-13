@@ -220,7 +220,6 @@ def calculate_saliency(image):
 
     saliencyMap_uint8 = (255 * saliencyMap).astype('uint8')
     threshMap = cv.threshold(saliencyMap_uint8, 0, 255,cv.THRESH_BINARY + cv.THRESH_OTSU)[1]
-
     return saliencyMap
 
 def segment_image(image):
@@ -228,7 +227,6 @@ def segment_image(image):
     # load the image and apply SLIC superpixel segmentation to it via
     # scikit-image
     segments = slic(img_as_float(image), n_segments=10, slic_zero=True)
-
     return segments
 
 def calculate_saliency_region(image):
