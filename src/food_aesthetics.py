@@ -15,10 +15,9 @@ class FoodAesthetics:
 
         self.__batch_size = 1
         self.temperature = 1.536936640739441
-        self.model = NimaMobileNet('./weights/pre_trained_weights.h5',
-            training=False)
+        self.model = NimaMobileNet(training=False)
         self.model.build((self.__batch_size, 224, 224, 3))
-        self.model.load_weights('./weights/trained_weights.h5')
+        self.model.load_weights('./src/weights/trained_weights.h5')
 
 
     def aesthetic_score(self, path):
