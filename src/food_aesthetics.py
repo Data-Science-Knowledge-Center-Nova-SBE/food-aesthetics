@@ -3,6 +3,7 @@ from model import NimaMobileNet
 import numpy as np
 from PIL import Image
 import cv2 as cv
+from pathlib import Path
 
 
 class FoodAesthetics:
@@ -17,7 +18,17 @@ class FoodAesthetics:
         self.temperature = 1.536936640739441
         self.model = NimaMobileNet(training=False)
         self.model.build((self.__batch_size, 224, 224, 3))
-        self.model.load_weights('./src/weights/trained_weights.h5')
+        self.__home_path = Path(__file__).parent.resolve()
+        self.model.load_weights(self.__home_path/'trained_weights.h5')
+        # fix the model path with:
+        # import pathlib
+        #pathlib.Path(__file__).parent.resolve()
+        #
+        # Steps:
+        # 1. create an account on test.pipy
+        # 2. change setup.py, (create history.md optional)
+        # 3. upload the library
+        # 4. test if if can read your weights
 
 
     def aesthetic_score(self, path):
@@ -272,15 +283,19 @@ class FoodAesthetics:
 
 
 if __name__ == '__main__':
+    print('import ok')
+    #print(Path(__file__).parent.resolve()/'/weights/trained_weights.h5')
     aes = FoodAesthetics()
+    print('class inited')
     img = './test-images/image1.jpeg'
-    print(aes.brightness(img))
-    print(aes.saturation(img))
-    print(aes.contrast(img))
-    print(aes.clarity(img))
-    print(aes.warm(img))
-    print(aes.colourfulness(img))
-    print(aes.size_difference(img))
-    print(aes.color_difference(img))
-    print(aes.texture_difference(img))
-    print(aes.segment_colorfulness(img))
+    print(aes.aesthetic_score(img))
+    #print(aes.brightness(img))
+    #print(aes.saturation(img))
+    #print(aes.contrast(img))
+    #print(aes.clarity(img))
+    #print(aes.warm(img))
+    #print(aes.colourfulness(img))
+    #print(aes.size_difference(img))
+    #print(aes.color_difference(img))
+    #print(aes.texture_difference(img))
+    #print(aes.segment_colorfulness(img))
