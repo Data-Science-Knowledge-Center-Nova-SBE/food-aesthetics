@@ -2,7 +2,7 @@
 
 High Aesthetic Score      |  Low Aesthetic Score
 :-------------------------:|:-------------------------:	
-![](images/image1.jpeg)  |  ![](images/image2.jpeg)	
+![](images/top-images-collage.png)  |  ![](images/bottom-images-collage.png)	
 
 
 ## Introduction
