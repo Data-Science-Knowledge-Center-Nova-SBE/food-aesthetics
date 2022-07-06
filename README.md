@@ -55,7 +55,6 @@ python3 run.py /Users/John/Desktop/images
 The csv file has two columns: the first one containing the images names, and the second one the aesthetic scores in the 0 (lowest) to 1 (highest) range. 
 
 ## Cite Us
-## Cite us
 
 ```bibtex
 @article{gambetti2022,
