@@ -1,9 +1,12 @@
 import tensorflow as tf
-from model import NimaMobileNet
+#from model import NimaMobileNet
 import numpy as np
 from PIL import Image
 import cv2 as cv
 from pathlib import Path
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.applications.mobilenet import MobileNet
 
 
 class FoodAesthetics:
@@ -11,25 +14,12 @@ class FoodAesthetics:
 
         super(FoodAesthetics, self).__init__()
 
-        # set a random seed
-        tf.random.set_seed(46)
-
         self.__batch_size = 1
         self.temperature = 1.536936640739441
         self.model = NimaMobileNet(training=False)
         self.model.build((self.__batch_size, 224, 224, 3))
         self.__home_path = Path(__file__).parent.resolve()
         self.model.load_weights(self.__home_path/'trained_weights.h5')
-        # fix the model path with:
-        # import pathlib
-        #pathlib.Path(__file__).parent.resolve()
-        #
-        # Steps:
-        # 1. create an account on test.pipy
-        # 2. change setup.py, (create history.md optional)
-        # 3. upload the library
-        # 4. test if if can read your weights
-
 
     def aesthetic_score(self, path):
         """
@@ -38,11 +28,12 @@ class FoodAesthetics:
         Input: path of the image.
         Output: aesthetic score in range from 0 to 1.
         """
+        
         photo = np.array(self._load_image(path))
-        photo = tf.image.random_crop(tf.convert_to_tensor(photo / 255,
-            dtype=tf.float16), (224, 224, 3))
-
-        #photo = tf.convert_to_tensor(photo / 255, dtype=tf.float16), (224, 224, 3)
+        photo = tf.image.random_crop(tf.convert_to_tensor(photo / 255, dtype=tf.float16), (224, 224, 3))
+        
+        #photo = np.array(self._load_and_center_crop(path))
+        #photo = tf.convert_to_tensor(photo / 255, dtype=tf.float16)
 
         logits = self.model(tf.expand_dims(photo, axis = 0))
         logits_scaled = tf.math.divide(logits, self.temperature)
@@ -52,7 +43,7 @@ class FoodAesthetics:
 
     def _load_image(self, path):
         """"
-        Open and resize picture mantaining aspect ratio.
+        Open and center crop picture mantaining aspect ratio.
 
         Input: path of image.
         Output: resized image. Shortest side: 224 pixels.
@@ -68,6 +59,38 @@ class FoodAesthetics:
             pic_res = pic.resize((round(s*width), 224))
 
         return pic_res
+
+    
+    def _load_and_center_crop(self, path):
+        """
+        Load, Resize, and Center Crop image.
+        
+        Input: image path.
+        Output: center cropped image.
+        """
+        pic = Image.open(path)
+        width, height = pic.size
+
+        # 1. resize image: shortest side is 224 pixels 
+        s = max(224/width, 224/height)
+
+        if width < height:
+            pic_res = pic.resize((224, round(s*height)))
+        else:
+            pic_res = pic.resize((round(s*width), 224))
+
+        #print(np.array(pic_res).shape)    
+
+        # 2. center crop image
+        left = (width - 224)/2
+        top = (height - 224)/2
+        right = (width + 224)/2
+        bottom = (height + 224)/2
+
+        cropped = pic_res.crop((left, top, right, bottom))
+        #print(np.array(cropped).shape)
+
+        return cropped
 
 
 
@@ -280,6 +303,27 @@ class FoodAesthetics:
         return stdRoot + (0.3 * meanRoot)
 
 
+# model 
+class NimaMobileNet(tf.keras.Model):
+    def __init__(self, training = True):
+
+        super(NimaMobileNet, self).__init__()
+        self.training = training
+        self.base_model = MobileNet((None, None, 3), alpha=1, include_top=False,
+            pooling='avg', weights=None)
+        if self.training:
+            self.x = Dropout(0.25)(self.base_model.output)
+        else:
+            self.x = self.base_model.output
+        self.x = Dense(10, activation='relu')(self.x)
+        self.model = Model(self.base_model.input, self.x)
+
+        # Add New Layers
+        self.fc_last = Dense(2)
+
+    def call(self, x):
+        x = self.model(x)
+        return self.fc_last(x)
 
 
 if __name__ == '__main__':
@@ -287,7 +331,7 @@ if __name__ == '__main__':
     #print(Path(__file__).parent.resolve()/'/weights/trained_weights.h5')
     aes = FoodAesthetics()
     print('class inited')
-    img = './test-images/image1.jpeg'
+    img = './images/image2.jpeg'
     print(aes.aesthetic_score(img))
     #print(aes.brightness(img))
     #print(aes.saturation(img))
