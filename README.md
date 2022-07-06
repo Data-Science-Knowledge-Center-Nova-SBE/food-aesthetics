@@ -68,4 +68,5 @@ The csv file has two columns: the first one containing the images names, and the
 ```
 
 ## Next Releases
-- pip dedicated package (work in progress)
+- extending the library includin many photographic attributes;
+- pip dedicated package (work in progress).
