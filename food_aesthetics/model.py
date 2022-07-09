@@ -1,5 +1,4 @@
 import tensorflow as tf
-#from model import NimaMobileNet
 import numpy as np
 from PIL import Image
 import cv2 as cv

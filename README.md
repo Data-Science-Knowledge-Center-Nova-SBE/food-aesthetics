@@ -15,10 +15,10 @@ Instead of relying on a multitude of standard attributes stemming from the photo
 
 Below, we provide the guidance on how to run the trained model for your set of food images. 
 
-#### Paper: [Camera Eats First: Exploring Food Aesthetics Portrayed on Social Media using Deep Learning](https://www.google.com) [Coming on Early Cite soon]
+#### Paper Link: [Camera Eats First: Exploring Food Aesthetics Portrayed on Social Media using Deep Learning](https://www.google.com) [Coming on Early Cite soon]
 
 
-## Running the Trained Model
+## Infer the Aesthetic Score for your Food Pictures
 
 ### Requirements
 
@@ -68,5 +68,5 @@ The csv file has two columns: the first one containing the images names, and the
 ```
 
 ## Next Releases
-- extending the library includin many photographic attributes;
+- extending the library including many photographic attributes (work in progress);
 - pip dedicated package (work in progress).
