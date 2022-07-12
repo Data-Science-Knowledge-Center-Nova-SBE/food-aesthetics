@@ -15,7 +15,7 @@ Instead of relying on a multitude of standard attributes stemming from the photo
 
 Below, we provide the guidance on how to run the trained model for your set of food images. 
 
-#### Paper Link: [Camera Eats First: Exploring Food Aesthetics Portrayed on Social Media using Deep Learning](https://www.google.com) [Coming on Early Cite soon]
+#### Paper Link: [Camera Eats First: Exploring Food Aesthetics Portrayed on Social Media using Deep Learning](https://www.emerald.com/insight/content/doi/10.1108/IJCHM-09-2021-1206/full/html)
 
 
 ## Infer the Aesthetic Score for your Food Pictures
