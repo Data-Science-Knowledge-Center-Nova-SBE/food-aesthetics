@@ -38,7 +38,7 @@ Once cloned the repository, navigate with the terminal within the project folder
 ```{bash}
 pip3 install -r requirements.txt
 ```
-4. Store the food images in .jpeg format in an image folder in your machine and copy the absolute path. 
+4. Store the food images in .jpeg format in an images folder in your machine and copy the absolute path. 
 
 An example of an absolute path: /Users/John/Desktop/images
 
