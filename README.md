@@ -21,7 +21,7 @@ Below, we provide the guidance on how to run the trained model for your set of f
 
 ### Requirements
 
-1. Install [Python](https://www.python.org/) (preferebly >= 3.10);
+1. Install [Python](https://www.python.org/) (preferably >= 3.10);
 2. Git clone this repository to your machine: click the green button "code" in this project's homepage and follow the steps;
 3. Install the following dependencies
 
