@@ -17,12 +17,11 @@ Below, we provide the guidance on how to run the trained model for your set of f
 
 #### Paper Link: [Camera Eats First: Exploring Food Aesthetics Portrayed on Social Media using Deep Learning](https://www.emerald.com/insight/content/doi/10.1108/IJCHM-09-2021-1206/full/html)
 
-
 ## Infer the Aesthetic Score for your Food Pictures
 
 ### Requirements
 
-1. Install [Python](https://www.python.org/);
+1. Install [Python](https://www.python.org/) (preferebly >= 3.10);
 2. Git clone this repository to your machine: click the green button "code" in this project's homepage and follow the steps;
 3. Install the following dependencies
 
