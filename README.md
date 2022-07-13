@@ -17,6 +17,7 @@ Below, we provide the guidance on how to run the trained model for your set of f
 
 #### Paper Link: [Camera Eats First: Exploring Food Aesthetics Portrayed on Social Media using Deep Learning](https://www.emerald.com/insight/content/doi/10.1108/IJCHM-09-2021-1206/full/html)
 #### Authors: Alessandro Gambetti & Qiwei Han
+#### Email to: gambetti.alessandro@novasbe.pt
 
 ## Infer the Aesthetic Score for your Food Pictures
 
