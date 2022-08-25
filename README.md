@@ -63,8 +63,9 @@ The csv file has two columns: the first one containing the images names, and the
     author={Alessandro Gambetti and Qiwei Han},
     year={2022},
     journal={International Journal of Contemporary Hospitality Management},
-    volume={Ahead of Print},
-    number={Ahead of Print},
+    volume={34},
+    number={9},
+    pages={3300-3331}
 } 
 ```
 
